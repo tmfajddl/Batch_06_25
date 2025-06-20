@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
@@ -21,6 +23,7 @@ public class HelloWorldConfig {
     // job : 여러개의 step들로 구성
 
     @Bean
+    @JobScope
     public Job helloWorldJob() {
         return jobBuilderFactory.get("helloWorldJob")
                 .incrementer(new RunIdIncrementer()) // 강제로 매번 다른 ID를 부여 -> 파라미터
@@ -29,6 +32,7 @@ public class HelloWorldConfig {
     }
 
     @Bean
+    @StepScope
     public Step helloWorldStep1() {
         return stepBuilderFactory.get("helloWorldStep1").tasklet(helloWorldTasklet()).build();
     }
