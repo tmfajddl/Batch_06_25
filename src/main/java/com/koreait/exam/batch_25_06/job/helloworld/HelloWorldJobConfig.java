@@ -7,7 +7,6 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.JobScope;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
-import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class HelloWorldConfig {
+public class HelloWorldJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
@@ -64,9 +63,9 @@ public class HelloWorldConfig {
         return (contribution, chunkContext) -> {
             System.out.println("헬로월드!!!2222");
 
-            if(true){
-                throw new Exception("실패 : 헬로 월드 태스클릿 2 실패");
-            }
+            //if(true){
+            //    throw new Exception("실패 : 헬로 월드 태스클릿 2 실패");
+            //}
 
             return RepeatStatus.FINISHED;
         };
