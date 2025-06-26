@@ -1,8 +1,7 @@
-package com.koreait.exam.batch_25_06.app.cart.entity;
+package com.koreait.exam.batch_25_06.app.cash.entity;
 
 import com.koreait.exam.batch_25_06.app.entity.BaseEntity;
 import com.koreait.exam.batch_25_06.app.member.entity.Member;
-import com.koreait.exam.batch_25_06.app.product.entity.ProductOption;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,16 +19,12 @@ import static javax.persistence.FetchType.LAZY;
 @NoArgsConstructor
 @SuperBuilder
 @ToString(callSuper = true)
-public class CartItem extends BaseEntity {
+public class CashLog extends BaseEntity {
 
     @ManyToOne(fetch = LAZY)
-    @ToString.Exclude
     private Member member;
 
-    @ManyToOne(fetch = LAZY)
-    @ToString.Exclude
-    private ProductOption productOption;
+    private long price;
 
-    private int quantity;
-
+    private String eventType;
 }
